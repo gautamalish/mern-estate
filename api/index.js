@@ -1,6 +1,8 @@
 import express from "express";
 import { config } from "dotenv";
 import mongoose from "mongoose";
+import UserRouter from "./routes/user.route.js";
+
 config();
 const app = express();
 const PORT = process.env.PORT || 6060;
@@ -15,9 +17,4 @@ mongoose
   .catch((err) => {
     console.log("Error:", err);
   });
-
-app.get("/", async (req, res) => {
-  res.status(200).send("Get Request");
-});
-
-
+app.use("/api/user", UserRouter);
